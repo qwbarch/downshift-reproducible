@@ -34,9 +34,17 @@ export default function App() {
     items,
     defaultHighlightedIndex: 0,
   });
+
+  function onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      event.currentTarget.focus();
+    }
+  }
+
   return (
     <>
-      <input {...getInputProps()} />
+      <input {...getInputProps({ onKeyDown })} />
       <ul {...getMenuProps()}>
         {isOpen &&
           items.map((item, index) => (
